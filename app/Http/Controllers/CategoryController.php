@@ -77,8 +77,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->titre = $request->input('titre');
-        $category->texte = $request->input('texte');
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
         $category->save();
 
         return redirect()->route('category');

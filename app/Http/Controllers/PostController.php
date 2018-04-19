@@ -24,7 +24,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
+
     }
 
     /**
@@ -69,7 +70,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $path = $request->file('fichier')->store('public');
+
+        $post = new Post();
+        $post->titre = $request->input('titre');
+        $post->fichier = $path;
+        $post->content = $request->input('content');
+        $post->category_id = $category->id;
+        $post->user_id = auth()->user()->id;
     }
 
     /**
