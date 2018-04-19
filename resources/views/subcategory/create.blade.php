@@ -3,7 +3,7 @@
 @section('content')
 
 
-        <form method="POST" action="{{ route('category.store') }}">
+        <form method="POST" action="{{ route('subcategory.store') }}">
             {{ csrf_field() }}
 
             <p><input type="text" name="title" placeholder="Titre"></p>
@@ -12,6 +12,6 @@
 
         </form>
 
-        <a class="" href="{{ route('category.index') }}">Retour</a>
+        <a class="" href="{{ route('subcategory.index') }}">Retour</a>
 
 @endsection

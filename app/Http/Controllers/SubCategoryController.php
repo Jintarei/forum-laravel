@@ -14,7 +14,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = SubCategory::all();
+        return view('subcategory.index', ['subcategories' => $subcategories]);
     }
 
     /**
@@ -24,7 +25,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('subcategory.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subcategory = new SubCategory();
+        $subcategory->title = $request->input('title');
+        $subcategory->description = $request->input('description');
+        $subcategory->user_id = auth()->user()->id;
+
+        $subcategory->save();
+
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class SubCategoryController extends Controller
      */
     public function show(SubCategory $subCategory)
     {
-        //
+        return view('subcategory.show', ['subcategory' => $subCategory]);
     }
 
     /**
@@ -57,7 +65,7 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        //
+        return view('subcategory.edit', ['subcategory' => $subCategory]);
     }
 
     /**
@@ -69,7 +77,11 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        //
+        $subCategory->title = $request->input('title');
+        $subCategory->description = $request->input('description');
+        $subCategory->save();
+
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -80,6 +92,7 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
+        $subCategory->delete();
+        return redirect()->route('subcategory.index');
     }
 }

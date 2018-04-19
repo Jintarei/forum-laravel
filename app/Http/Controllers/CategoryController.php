@@ -81,7 +81,7 @@ class CategoryController extends Controller
         $category->description = $request->input('description');
         $category->save();
 
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -93,6 +93,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 }
