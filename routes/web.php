@@ -11,13 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/', 'CategoryController@index')->name('index');
+Route::get('/', 'HomeController@index')->name('index');
 
 Route::resource('category', 'CategoryController');
 Route::resource('subcategory', 'SubCategoryController');
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', 'CategoryController@index')->name('categories');
+    Route::get('/create', 'CategoryController@create')->name('create');
+});
